@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, Example 7</title>
+</head>
+<body>
+    <form action="" name="theForm">
+        <select name="theDay" size="5">
+            <option value="0" selected="selected">Monday</option>
+            <option value="1">Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+            <option value="6">Sunday</option>
+        </select>
+        <br>
+        <input type="button" value="Remove Wednesday" name="btnRemoveWed">
+        <input type="button" value="Add Wednesday" name="btnAddWed">
+        <br>
+    </form>
+
+    <script>
+        const theForm = document.theForm;
+
+        function btnRemoveWedClick() {
+            let options = theForm.theDay.options;
+
+            if (options[2].text == "Wednesday") {
+                options[2] = null;
+            } else {
+                alert("There is no Wednesday here!");
+            }
+        }
+
+        function btnAddWedClick() {
+            let options = theForm.theDay.options;
+
+            if (options[2].text != "Wednesday") {
+                let lastOption = new Option();
+                options[options.length] = lastOption;
+
+                for (let index = options.length - 1; index > 2; index --) {
+                    let currentOption = options[index];
+                    let previousOption = options[index - 1];
+
+                    currentOption.text = previousOption.text;
+                    currentOption.value = previousOption.value;
+                }
+
+                let option = new Option("Wednesday", 2)
+                options[2] = option;
+            } else {
+                alert("Do you want to have TWO Wednesdays?")
+            }
+        }
+
+        theForm.btnRemoveWed.addEventListener("click", btnRemoveWedClick);
+        theForm.btnAddWed.addEventListener("click", btnAddWedClick);
+    </script>
+</body>
+</html>
