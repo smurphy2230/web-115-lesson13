@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, example 6</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <p>
+            Select all the components you want on your computer
+        </p>
+        <p>
+            <label for="chkDVD">DVD-ROM</label>
+            <input type="checkbox" name="chkDVD" id="chkDVD" value="DVD-ROM">
+        </p>
+        <p>
+            <label for="ChlBluRay">Blu-ray</label>
+            <input type="checkbox" name="chkBluRay" id="chkBluRay" value="Blu-ray">
+        </p>
+        <hr>
+        <p>
+            Select your processor speed
+        </p>
+        <p>
+            <input type="radio" name="radCpuSpeed" id="" checked="checked" value="3.2 ghz">
+            <label>3.2 GHz</label>
+        
+            <input type="radio" name="radCpuSpeed" id="" value="3.7 ghz">
+            <label>3.7 GHz</label>
+        
+            <input type="radio" name="radCpuSpeed" id="" value="4.0 ghz">
+            <label>4.0 GHz</label>
+        </p>
+
+        <input type="button" value="Check form" name="btnCheck">
+    </form>
+
+    <script>
+        const myForm = document.form1;
+
+        function getSelectedSpeedValue() {
+            let radios = myForm.radCpuSpeed;
+
+            for (let index = 0; index < radios.length; index ++) {
+                if (radios[index].checked) {
+                    return radios[index].value;
+                }
+            }
+            return "";
+        }
+
+        function findIndexOfSpeed(radio) {
+            let radios = myForm.radCpuSpeed;
+
+            for (let index = 0; index < radios.length; index ++) {
+                if (radios[index] == radio) {
+                    return index
+                }
+            }
+            return -1;
+        }
+
+        function radCpuSpeedClick(e) {
+            let radIndex = findIndexOfSpeed(e.target);
+
+            if (radIndex == 1) {
+                e.preventDefault();
+                alert("Sorry that processor speed is currently unavailable");
+
+                // if using IE
+                myForm.radCpuSpeed[0].checked = true;
+            }
+        }
+
+        function btnCheckClick() {
+            let numberOfControls = myForm.length;
+            let compSpec = "Your chosen processor speed is ";
+            compSpec = compSpec + getSelectedSpeedValue();
+            compSpec = compSpec + "\nWith the following additional components:\n";
+
+            for (let index = 0; index < numberOfControls; index ++) {
+                let element = myForm[index];
+                if (element.type == "checkbox") {
+                    if (element.checked) {
+                        compSpec = compSpec + element.value + "\n";
+                    }
+                }
+            }
+            alert(compSpec);
+        }
+
+        for (let index = 0; index < myForm.radCpuSpeed.length; index ++) {
+            myForm.radCpuSpeed[index].addEventListener("click", radCpuSpeedClick);
+        }
+
+        myForm.btnCheck.addEventListener("click", btnCheckClick)
+    </script>
+</body>
+</html>
