@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, Example 2</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <input type="button" name="myButton" value="Button clicked 0 times" />
+    </form>
+
+    <script>
+        const myButton = document.form1.myButton;
+        let numberOfClicks = 0;
+
+        function myButtonClick() {
+            numberOfClicks ++;
+            myButton.value = "Button clicked " + numberOfClicks + " times";
+        }
+
+        myButton.addEventListener("click", myButtonClick);
+    </script>
+</body>
+</html>
