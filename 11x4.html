@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, Example 4</title>
+</head>
+<body>
+    <form action="" name="form1">
+        Please enter the following details:
+        <p>
+            Name:
+            <input type="text" name="txtName" />
+        </p>
+        <p>
+            Age:
+            <input type="text" name="txtAge" size="3" maxlength="3" id="" />
+        </p>
+        <p>
+            <input type="button" value="Check details" name="btnCheckForm">
+        </p>
+    </form>
+
+    <script>
+        const myForm = document.form1;
+
+        function btnCheckFormClick(e) {
+            let txtName = myForm.txtName;
+            let txtAge = myForm.txtAge;
+
+            if (txtAge.value == "" || txtName.value == "") {
+                alert ("Please complete all of the form");
+
+                if (txtName.value == "") {
+                    txtName.focus();
+                } else {
+                    txtAge.focus();
+                } 
+            
+            } else {
+                alert ("Thank you for completing the form " + txtName.value);
+            }
+        }
+
+        function txtAgeBlur(e) {
+            let target = e.target;
+
+            if (isNaN(target.value)) {
+                alert ("Please enter a valid age");
+                target.focus();
+                target.select();
+            }
+
+            
+        }
+
+        function txtNameChange(e) {
+            alert ("Hello " + e.target.value);
+        }
+
+        myForm.txtName.addEventListener("change", txtNameChange);
+        myForm.txtAge.addEventListener("blur", txtAgeBlur);
+        myForm.btnCheckForm.addEventListener("click", btnCheckFormClick);
+    </script>
+    
+</body>
+</html>
