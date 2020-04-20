@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, Example 5</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <textarea name="textarea1" id="" cols="40" rows="15"></textarea>
+
+        <textarea name="textarea2" id="" cols="40" rows="15"></textarea>
+        <br>
+        <input type="button" value="Clear event textarea" name="button1">
+    </form>
+    
+    <script>
+        const myForm = document.form1;
+        let textArea1 = myForm.textarea1;
+        let textArea2 = myForm.textarea2;
+        const btnClear = myForm.button1;
+
+        function displayEvent(e) {
+            let message = textArea2.value;
+            message = message + e.type + "\n";
+            textArea2.value = message;
+        }
+
+        function clearEntryArea(e) {
+            textArea1.value = "";
+        }
+
+        function clearEventLog(e) {
+            textArea2.value = "";
+        }
+
+        textArea1.addEventListener("change", displayEvent);
+        textArea1.addEventListener("keydown", displayEvent);
+        textArea1.addEventListener("keypress", displayEvent);
+        textArea1.addEventListener("keyup", displayEvent);
+        btnClear.addEventListener("click", clearEventLog);
+        btnClear.addEventListener("click", clearEntryArea)
+
+    </script>
+</body>
+</html>
