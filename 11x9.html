@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, Example 9</title>
+</head>
+<body>
+    <div>Local Time is <span id="spanLocalTime"></span></div>
+    <div id="divCityTime"></div>
+
+    <form action="" name="form1">
+        <select name="firstCity" size="5" id="">
+            <option value="60" selected>Berlin</option>
+            <option value="330">Bombay</option>
+            <option value="0">London</option>
+            <option value="180">Moscow</option>
+            <option value="-300">New York</option>
+            <option value="60">Paris</option>
+            <option value="-480">San Francisco</option>
+            <option value="600">Sydney</option>
+        </select>
+        <p>
+            <input type="checkbox" name="chkDst" id="chkDst">
+
+            <label for="chkDst">Adjust city time for Daylight Savings Time</label>
+        </p>
+    </form>
+
+    <script>
+        const myForm = document.form1
+
+        function updateTimeZone() {
+            let firstCity = myForm.firstCity;
+            let selectedOption = firstCity.options[firstCity.selectedIndex];
+            let offset = selectedOption.value;
+            let selectedCity = selectedOption.text;
+
+            let dstAdjust = 0;
+
+            if (myForm.chkDst.checked) {
+                dstAdjust = 60;
+            }
+
+            updateOutput(selectedCity, offset, dstAdjust)
+        }
+
+        function updateOutput(selectedCity, offset, dstAdjust) {
+            let now = new Date();
+
+            document.getElementById("spanLocalTime").innerHTML = now.toLocaleString();
+
+            now.setMinutes(now.getMinutes() + now.getTimezoneOffset() + parseInt(offset, 10) + dstAdjust);
+
+            let resultsText = selectedCity + " time is " + now.toLocaleString();
+
+            document.getElementById("divCityTime").innerHTML = resultsText;
+        }
+
+        myForm.firstCity.addEventListener("change", updateTimeZone);
+        myForm.chkDst.addEventListener("click", updateTimeZone);
+
+        updateTimeZone();
+    </script>
+</body>
+</html>
