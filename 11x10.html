@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <p>
+            <label for="minValue">minValue</label>
+            <input type="number" id="minValue" name="minValue">
+        </p>
+        <p>
+            <label for="maxValue">maxValue</label>
+            <input type="number" name="maxValue" id="maxValue">
+        </p>
+        <p>
+            <label for="stepValue">step</label>
+            <input type="number" name="stepValue" id="stepValue">
+        </p>
+        <p>
+            <input type="range" name="slider" id="slider">
+        </p>
+    </form>
+    <div id="output"></div>
+</body>
+
+<script>
+    const myForm = document.form1;
+    const output = document.getElementById("output");
+
+    function formInputChange() {
+        let slider = myForm.slider;
+
+        slider.min = parseFloat(myForm.minValue.value);
+        slider.max = parseFloat(myForm.maxValue.value);
+        slider.step = parseFloat(myForm.stepValue.value);
+    }
+
+    myForm.addEventListener("input", formInputChange)
+</script>
+</html>
