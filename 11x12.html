@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11, Example 12</title>
+</head>
+<body>
+    <h2>Highway Speed Tracker</h2>
+    <form action="" id="form1" name="form1">
+        <p>
+            <label for="driverName" id="driverName">Driver Name: </label>
+            <input type="text" name="driverName" id="driverName">
+        </p>
+        <p>
+            <label for="speed">Speed (mph): </label>
+            <input type="number" name="speed" id="speed">
+            <meter id="speedMeter" value="0" low="55" optimum="75" high="90" max="120"></meter>
+        </p>
+        <p>
+            <label for="vehicle">Vehicle Type: </label>
+            <input type="text" name="vehicle" id="vehicle">
+        </p>
+    </form>
+    <p>Form Completion Progress: 
+        <progress id="completionProgress" max="3" value="0"></progress>
+    </p>
+
+    <script src="speed.js"></script>
+</body>
+</html>
